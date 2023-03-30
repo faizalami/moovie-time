@@ -4,18 +4,20 @@ import type { Props as MovieItem } from './Card.vue'
 
 interface Props {
   class: string;
+  columns: 4 | 5;
   items: MovieItem[];
 }
 
 const props = withDefaults(defineProps<Props>(), {
   class: '',
+  columns: 5,
   items: () => [],
 })
 </script>
 
 <template>
   <section :class="props.class">
-    <div class="mx-auto max-w-7xl grid md:grid-cols-5 md:auto-rows-fr gap-6">
+    <div :class="`mx-auto max-w-7xl grid grid-cols-${columns} auto-rows-fr gap-6`">
       <Card
         v-for="movie in items"
         :key="movie.movieId"

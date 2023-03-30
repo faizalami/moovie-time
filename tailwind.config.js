@@ -24,5 +24,11 @@ module.exports = {
       neutral: colors.neutral,
     },
   },
-  plugins: [],
+  safelist: [
+    'grid-cols-4',
+    'grid-cols-5',
+  ],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
