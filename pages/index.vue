@@ -11,7 +11,7 @@ const { data: responseGenres } = await useFetch('https://api.themoviedb.org/3/ge
 
 const genres = (responseGenres.value as Genres)?.genres || []
 
-const { data: responseMovies } = useFetch(
+const { data: responseMovies } = await useFetch(
   'https://api.themoviedb.org/3/movie/popular?api_key=f0ed16cec6f5c089dab07bd0c89aa2f5&language=en-US&page=1',
   {
     transform (data: Movies) {

@@ -39,7 +39,7 @@ const { data: responseGenres } = await useFetch(genreUrl)
 
 const genres = (responseGenres.value as Genres)?.genres || []
 
-const { data: responseItems } = useFetch(
+const { data: responseItems } = await useFetch(
   itemsUrl,
   {
     transform (data) {
