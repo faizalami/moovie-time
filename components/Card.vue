@@ -14,9 +14,14 @@ import { StarIcon } from '@heroicons/vue/20/solid'
         <p class="mt-0 text-white text-lg font-semibold h-0 group-hover:h-auto group-hover:mt-12">
           Action
         </p>
-        <button class="mt-0 bg-primary rounded-full py-1.5 px-8 text-neutral-200 font-bold mx-auto h-0 group-hover:h-auto group-hover:mt-12">
-          VIEW
-        </button>
+        <NuxtLink v-slot="{ navigate }" to="/movies/123" custom>
+          <button
+            class="mt-0 bg-primary rounded-full py-1.5 px-8 text-neutral-200 font-bold mx-auto h-0 group-hover:h-auto group-hover:mt-12"
+            @click="navigate"
+          >
+            VIEW
+          </button>
+        </NuxtLink>
       </div>
     </div>
     <h2 class="font-semibold text-neutral-200 mt-3">

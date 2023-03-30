@@ -21,9 +21,5 @@
     </div>
   </section>
 
-  <section class="-mt-44 mb-32">
-    <div class="mx-auto max-w-7xl grid md:grid-cols-5 md:auto-rows-fr gap-6">
-      <Card v-for="index in Array(15).keys()" :key="index" />
-    </div>
-  </section>
+  <MovieList class="-mt-44 mb-32" />
 </template>
