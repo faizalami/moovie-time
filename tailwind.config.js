@@ -18,6 +18,7 @@ module.exports = {
       secondary: '#1E232B',
       'dark-grey': '#929292',
       decoration: '#E74C3C',
+      gold: '#FFB802',
       black: colors.black,
       white: colors.white,
       neutral: colors.neutral,

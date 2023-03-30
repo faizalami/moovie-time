@@ -43,7 +43,7 @@ const filteredPeople = computed(() =>
 </script>
 
 <template>
-  <nav class="bg-white/[0.05] text-sm fixed w-full">
+  <nav class="bg-white/[0.05] text-sm fixed w-full z-50">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center">
         <div class="w-full flex items-center justify-between">
