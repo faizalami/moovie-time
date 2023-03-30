@@ -5,6 +5,20 @@ import { StarIcon } from '@heroicons/vue/20/solid'
 <template>
   <div class="group w-full flex flex-col relative">
     <img class="w-full h-[330px] object-cover" src="https://image.tmdb.org/t/p/w500/wD2kUCX1Bb6oeIb2uz7kbdfLP6k.jpg" alt="Winnie the Pooh: Blood and Honey">
+
+    <div class="absolute top-0 right-0 bg-secondary/[0.8] py-1 px-2">
+      <p class="text-lg font-bold text-neutral-200">
+        6.5
+      </p>
+    </div>
+
+    <h2 class="font-semibold text-neutral-200 mt-3">
+      Winnie the Pooh: Blood and Honey
+    </h2>
+    <h3 class="text-sm text-dark-grey">
+      2023
+    </h3>
+
     <div class="absolute w-full flex items-center h-0 top-0 left-0 opacity-0 bg-black/[0.8] group-hover:h-full group-hover:opacity-100 duration-500">
       <div class="flex flex-col w-full text-center">
         <p class="text-white flex text-2xl font-semibold mx-auto h-0 group-hover:h-auto">
@@ -24,11 +38,5 @@ import { StarIcon } from '@heroicons/vue/20/solid'
         </NuxtLink>
       </div>
     </div>
-    <h2 class="font-semibold text-neutral-200 mt-3">
-      Winnie the Pooh: Blood and Honey
-    </h2>
-    <h3 class="text-sm text-dark-grey">
-      2023
-    </h3>
   </div>
 </template>
