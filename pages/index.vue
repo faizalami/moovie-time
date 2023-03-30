@@ -1,3 +1,43 @@
+<script setup lang="ts">
+import type { Movies } from '~~/types/movies.type.js'
+import type { Genres } from '~~/types/genres.type.js'
+import type { Props as MovieItem } from '~~/components/Card.vue'
+
+interface TransformedMovies extends Omit<Movies, 'results'> {
+  results: MovieItem[];
+}
+
+const { data: responseGenres } = await useFetch('https://api.themoviedb.org/3/genre/movie/list?api_key=f0ed16cec6f5c089dab07bd0c89aa2f5&language=en-US')
+
+const genres = (responseGenres.value as Genres)?.genres || []
+
+const { data: responseMovies } = useFetch(
+  'https://api.themoviedb.org/3/movie/popular?api_key=f0ed16cec6f5c089dab07bd0c89aa2f5&language=en-US&page=1',
+  {
+    transform (data: Movies) {
+      const results: MovieItem[] = data.results.map((movieItem) => {
+        const genre = genres.find((genreItem) => {
+          return genreItem.id === movieItem.genre_ids?.[0]
+        })
+
+        return {
+          movieId: movieItem.id,
+          title: movieItem.title,
+          year: movieItem.release_date?.substring(0, 4) || '',
+          genre: genre?.name || 'Unknown',
+          rating: movieItem.vote_average,
+          image: movieItem.poster_path,
+        }
+      })
+      return { ...data, results }
+    },
+  },
+)
+
+const movies = (responseMovies.value as TransformedMovies)?.results || []
+
+</script>
+
 <template>
   <section class="mt-16 h-[530px] text-white">
     Hello world!
@@ -21,5 +61,5 @@
     </div>
   </section>
 
-  <MovieList class="-mt-44 mb-32" />
+  <MovieList class="-mt-44 mb-32" :items="movies" />
 </template>
