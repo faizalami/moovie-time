@@ -23,10 +23,18 @@ module.exports = {
       white: colors.white,
       neutral: colors.neutral,
     },
+    extend: {
+      lineClamp: {
+        8: '8',
+      },
+    },
   },
   safelist: [
     'grid-cols-4',
     'grid-cols-5',
+    {
+      pattern: /bg-.+/,
+    },
   ],
   plugins: [
     require('@tailwindcss/forms'),
