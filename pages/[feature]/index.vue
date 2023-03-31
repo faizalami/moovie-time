@@ -17,8 +17,7 @@ interface TransformedItems extends Omit<Movies, 'results'> {
 }
 
 const pageName = ref('')
-const genreUrl = ref('')
-const itemsUrl = ref('')
+const featureUrl = ref('')
 
 const route = useRoute()
 const { feature } = route.params
@@ -27,13 +26,11 @@ watchEffect(() => {
   switch (feature) {
     case 'movies':
       pageName.value = 'Movies'
-      genreUrl.value = 'https://api.themoviedb.org/3/genre/movie/list?api_key=f0ed16cec6f5c089dab07bd0c89aa2f5&language=en-US'
-      itemsUrl.value = 'https://api.themoviedb.org/3/movie/popular?api_key=f0ed16cec6f5c089dab07bd0c89aa2f5&language=en-US&page=1'
+      featureUrl.value = 'movie'
       break
     case 'tv-shows':
       pageName.value = 'TV Shows'
-      genreUrl.value = 'https://api.themoviedb.org/3/genre/tv/list?api_key=f0ed16cec6f5c089dab07bd0c89aa2f5&language=en-US'
-      itemsUrl.value = 'https://api.themoviedb.org/3/tv/popular?api_key=f0ed16cec6f5c089dab07bd0c89aa2f5&language=en-US&page=1'
+      featureUrl.value = 'tv'
       break
     default:
       throw createError({
@@ -43,12 +40,12 @@ watchEffect(() => {
   }
 })
 
-const { data: responseGenres } = await useFetch(genreUrl)
+const { data: responseGenres } = await useFetch(`https://api.themoviedb.org/3/genre/${featureUrl.value}/list?api_key=f0ed16cec6f5c089dab07bd0c89aa2f5&language=en-US`)
 
 const genres = (responseGenres.value as Genres)?.genres || []
 
 const { data: responseItems } = await useFetch(
-  itemsUrl,
+  `https://api.themoviedb.org/3/${featureUrl.value}/popular?api_key=f0ed16cec6f5c089dab07bd0c89aa2f5&language=en-US&page=1`,
   {
     transform (data) {
       let results: MovieItem[] = []
@@ -64,7 +61,7 @@ const { data: responseItems } = await useFetch(
               title: movieItem.title,
               year: movieItem.release_date?.substring(0, 4) || '',
               genre: genre?.name || 'Unknown',
-              rating: movieItem.vote_average,
+              rating: parseInt(String(movieItem.vote_average * 10), 10) / 10,
               image: movieItem.poster_path,
             }
           })
@@ -80,7 +77,7 @@ const { data: responseItems } = await useFetch(
               title: tvItem.name,
               year: tvItem.first_air_date?.substring(0, 4) || '',
               genre: genre?.name || 'Unknown',
-              rating: tvItem.vote_average,
+              rating: parseInt(String(tvItem.vote_average * 10), 10) / 10,
               image: tvItem.poster_path || '',
             }
           })

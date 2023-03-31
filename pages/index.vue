@@ -25,7 +25,7 @@ const { data: responseMovies } = await useFetch(
           title: movieItem.title,
           year: movieItem.release_date?.substring(0, 4) || '',
           genre: genre?.name || 'Unknown',
-          rating: movieItem.vote_average,
+          rating: parseInt(String(movieItem.vote_average * 10), 10) / 10,
           image: movieItem.poster_path,
         }
       })
