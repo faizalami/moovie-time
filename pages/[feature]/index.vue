@@ -114,7 +114,7 @@ const selectedSort = ref(sort[0])
   </section>
 
   <section>
-    <div class="mx-auto max-w-7xl flex items-start">
+    <div class="mx-auto max-w-7xl flex items-start flex-wrap">
       <aside class="w-60 mr-[30px] -mt-44 mb-32 rounded bg-gradient-to-b from-[#0E1723] to-secondary">
         <div class="p-5 text-neutral-200 font-semibold border-b border-white/[0.07]">
           Sort Results By
@@ -181,7 +181,12 @@ const selectedSort = ref(sort[0])
           </ul>
         </div>
       </aside>
-      <MovieList class="-mt-44 mb-32" :items="items" :columns="4" />
+      <MovieList class="-mt-44 mb-16 flex-1" :items="items" :columns="4" />
+      <div class="basis-full ml-64 mb-16 text-center">
+        <button class="bg-primary text-neutral-200 rounded-full py-1.5 px-4">
+          Load More
+        </button>
+      </div>
     </div>
   </section>
 </template>
