@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 <template>
   <section :class="props.class">
-    <div :class="`mx-auto max-w-7xl grid grid-cols-${columns} auto-rows-fr gap-6`">
+    <div :class="`mx-auto max-w-7xl px-4 md:px-0 grid md:grid-cols-${columns} md:auto-rows-fr gap-6`">
       <Card
         v-for="movie in items"
         :key="movie.movieId"

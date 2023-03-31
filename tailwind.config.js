@@ -30,8 +30,8 @@ module.exports = {
     },
   },
   safelist: [
-    'grid-cols-4',
-    'grid-cols-5',
+    'md:grid-cols-4',
+    'md:grid-cols-5',
     {
       pattern: /bg-.+/,
     },

@@ -53,8 +53,8 @@ const movies = (responseMovies.value as TransformedMovies)?.results || []
 </script>
 
 <template>
-  <section class="pt-32 pb-12 text-white w-full overflow-hidden">
-    <div class="-mx-16 relative -left-16 grid grid-cols-3 gap-8">
+  <section class="pt-64 md:pt-32 pb-12 text-white w-full overflow-hidden">
+    <div class="md:-mx-16 relative md:-left-16 grid md:grid-cols-3 gap-8">
       <SliderItem
         v-for="(item, index) in sliderItems"
         :key="item.movieId"
@@ -82,13 +82,13 @@ const movies = (responseMovies.value as TransformedMovies)?.results || []
   </section>
 
   <section class="bg-white/[0.05] h-[333px] text-neutral-200 pt-20 box-border">
-    <div class="mx-auto max-w-7xl flex items-center justify-between">
+    <div class="px-4 md:p-0 mx-auto max-w-7xl flex items-center justify-between flex-wrap">
       <div class="w-28 border-t-4 pt-1 border-decoration">
         <h1 class="w-52 text-2xl font-semibold">
           Discover Movie
         </h1>
       </div>
-      <div class="text-sm font-semibold">
+      <div class="w-full md:w-auto text-sm font-semibold flex justify-center md:justify-end py-4">
         <button class="bg-primary rounded-full py-1.5 px-4 mr-5">
           Popularity
         </button>
@@ -99,5 +99,5 @@ const movies = (responseMovies.value as TransformedMovies)?.results || []
     </div>
   </section>
 
-  <MovieList class="-mt-44 mb-32" :items="movies" />
+  <MovieList class="-mt-32 md:-mt-44 mb-32" :items="movies" />
 </template>

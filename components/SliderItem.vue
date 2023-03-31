@@ -30,24 +30,24 @@ const imgSrc = ref(props.image ? `https://image.tmdb.org/t/p/w500${props.image}`
   <div
     :class="{
       'py-5 pl-5': true,
-      'opacity-50': !active
+      'opacity-50 hidden md:block': !active
     }"
   >
     <div class="flex h-[324px] bg-black">
       <img class="-m-5" :src="imgSrc" :alt="title">
       <div class="ml-10 py-6 pr-6 text-white">
-        <p class="text-lg font-bold flex">
+        <p class="text-lg font-bold flex items-center">
           <StarIcon class="text-gold w-4 h-4" />
           {{ rating }}
         </p>
 
         <NuxtLink v-if="active" v-slot="{ href }" :to="`/movies/${movieId}`" custom>
           <a :href="href">
-            <h1 class="text-[28px] font-medium">{{ title }}</h1>
+            <h1 class="text-xl md:text-3xl font-medium">{{ title }}</h1>
           </a>
         </NuxtLink>
 
-        <h1 v-else class="text-[28px] font-medium">
+        <h1 v-else class="md:text-3xl font-medium">
           {{ title }}
         </h1>
 
