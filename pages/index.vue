@@ -3,6 +3,20 @@ import type { Movies } from '~~/types/movies.type.js'
 import type { Genres } from '~~/types/genres.type.js'
 import type { Props as MovieItem } from '~~/components/SliderItem.vue'
 
+useServerSeoMeta({
+  title: 'MoovieTime',
+  ogTitle: 'MoovieTime',
+  description: 'Find your favorite movies and tv shows in MoovieTime.',
+  ogDescription: 'Find your favorite movies and tv shows in MoovieTime.',
+})
+
+useSeoMeta({
+  title: 'MoovieTime',
+  ogTitle: 'MoovieTime',
+  description: 'Find your favorite movies and tv shows in MoovieTime.',
+  ogDescription: 'Find your favorite movies and tv shows in MoovieTime.',
+})
+
 type MovieItems = Omit<MovieItem, 'active'>[]
 
 interface TransformedMovies extends Omit<Movies, 'results'> {

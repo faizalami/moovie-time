@@ -95,6 +95,20 @@ const { data: responseDetail } = await useFetch(
 
 const detail = responseDetail.value as TransformedDetail
 
+useServerSeoMeta({
+  title: () => `${detail?.title ?? ''} | MoovieTime`,
+  ogTitle: () => `${detail?.title ?? ''} | MoovieTime`,
+  description: () => detail?.overview ?? '',
+  ogDescription: () => detail?.overview ?? '',
+})
+
+useSeoMeta({
+  title: () => `${detail?.title ?? ''} | MoovieTime`,
+  ogTitle: () => `${detail?.title ?? ''} | MoovieTime`,
+  description: () => detail?.overview ?? '',
+  ogDescription: () => detail?.overview ?? '',
+})
+
 const { data: responseReviews } = await useFetch(`https://api.themoviedb.org/3/${featureUrl.value}/${id}/reviews?api_key=f0ed16cec6f5c089dab07bd0c89aa2f5&language=en-US&page=1`)
 
 const reviews = (responseReviews.value as Comments)?.results || []
@@ -120,7 +134,7 @@ const { data: responseItems } = await useFetch(
               title: movieItem.title,
               year: movieItem.release_date?.substring(0, 4) || '',
               genre: genre?.name || 'Unknown',
-              rating: movieItem.vote_average,
+              rating: parseInt(String(movieItem.vote_average * 10), 10) / 10,
               image: movieItem.poster_path,
             }
           })
@@ -136,7 +150,7 @@ const { data: responseItems } = await useFetch(
               title: tvItem.name,
               year: tvItem.first_air_date?.substring(0, 4) || '',
               genre: genre?.name || 'Unknown',
-              rating: tvItem.vote_average,
+              rating: parseInt(String(tvItem.vote_average * 10), 10) / 10,
               image: tvItem.poster_path || '',
             }
           })
@@ -204,7 +218,7 @@ const recoms = (responseItems.value as TransformedRecom)?.results || []
     </div>
   </section>
 
-  <section class="flex flex-col md:hidden pt-48">
+  <section v-if="detail" class="flex flex-col md:hidden pt-48">
     <div class="flex-col flex-1 mb-8 px-8">
       <p class="text-white font-medium">
         {{ detail.year }}

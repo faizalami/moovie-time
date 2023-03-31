@@ -40,6 +40,20 @@ watchEffect(() => {
   }
 })
 
+useServerSeoMeta({
+  title: () => `${pageName.value} | MoovieTime`,
+  ogTitle: () => `${pageName.value} | MoovieTime`,
+  description: () => `Discover thousands of ${pageName.value} in MoovieTime.`,
+  ogDescription: () => `Discover thousands of ${pageName.value} in MoovieTime.`,
+})
+
+useSeoMeta({
+  title: () => `${pageName.value} | MoovieTime`,
+  ogTitle: () => `${pageName.value} | MoovieTime`,
+  description: () => `Discover thousands of ${pageName.value} in MoovieTime.`,
+  ogDescription: () => `Discover thousands of ${pageName.value} in MoovieTime.`,
+})
+
 const { data: responseGenres } = await useFetch(`https://api.themoviedb.org/3/genre/${featureUrl.value}/list?api_key=f0ed16cec6f5c089dab07bd0c89aa2f5&language=en-US`)
 
 const genres = (responseGenres.value as Genres)?.genres || []
