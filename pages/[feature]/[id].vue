@@ -208,7 +208,7 @@ const recoms = (responseItems.value as TransformedRecom)?.results || []
         </li>
         <li v-if="detail.budget" class="flex flex-col justify-center px-8 border-l border-white/[0.2]">
           <span class="text-xs text-white/[0.5] font-medium">BUDGET</span>
-          <span class="text-xs text-white font-medium">{{ detail.budget }}</span>
+          <span class="text-xs text-white font-medium">{{ new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(detail.budget) }}</span>
         </li>
         <li class="flex flex-col justify-center px-8 border-l border-white/[0.2]">
           <span class="text-xs text-white/[0.5] font-medium">PRODUCTION</span>
@@ -251,7 +251,7 @@ const recoms = (responseItems.value as TransformedRecom)?.results || []
         </li>
         <li v-if="detail.budget" class="flex flex-col justify-center px-8 border-l border-white/[0.2] w-1/2 md:w-auto">
           <span class="text-xs text-white/[0.5] font-medium">BUDGET</span>
-          <span class="text-xs text-white font-medium">{{ detail.budget }}</span>
+          <span class="text-xs text-white font-medium">{{ new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(detail.budget) }}</span>
         </li>
         <li class="flex flex-col justify-center px-8 border-l border-white/[0.2] w-1/2 md:w-auto">
           <span class="text-xs text-white/[0.5] font-medium">PRODUCTION</span>

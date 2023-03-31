@@ -28,7 +28,7 @@ withDefaults(defineProps<Props>(), {
             {{ userName }}
           </h2>
           <p class="text-[#666] text-xs">
-            {{ date }}
+            {{ new Date(Date.parse(date)).toLocaleDateString() }}
           </p>
         </div>
       </div>
