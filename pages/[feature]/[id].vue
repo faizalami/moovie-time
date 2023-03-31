@@ -155,15 +155,17 @@ const recoms = (responseItems.value as TransformedRecom)?.results || []
 <template>
   <section v-if="detail" class="h-[470px] w-full relative">
     <img class="absolute top-0 left-0 w-full h-full object-cover" :src="detail.backdrop" :alt="detail.title">
+
     <div class="flex flex-wrap items-end mx-auto max-w-7xl h-full relative">
-      <div class="w-56 mr-6 h-full">
+      <div class="w-full md:w-56 mr-6 h-full flex-grow md:flex-grow-0 flex justify-center">
         <img class="absolute w-56 h-[330px] mt-[300px] top-0 z-20" :src="detail.poster" :alt="detail.title">
       </div>
-      <div class="flex flex-col flex-1 mb-20">
+
+      <div class="flex-col flex-1 mb-20 hidden md:flex">
         <p class="text-white font-medium">
           {{ detail.year }}
         </p>
-        <h1 class="text-neutral-200 font-semibold">
+        <h1 class="text-neutral-200 font-semibold text-4xl">
           {{ detail.title }}
         </h1>
         <h2 class="text-white font-medium">
@@ -171,7 +173,8 @@ const recoms = (responseItems.value as TransformedRecom)?.results || []
         </h2>
       </div>
     </div>
-    <div class="w-full bg-black/[0.5] -mt-14 h-full relative">
+
+    <div class="w-full bg-black/[0.5] -mt-14 h-full relative hidden md:block">
       <ul class="mx-auto max-w-7xl flex pl-64 h-14 py-2 box-border">
         <li class="text-4xl text-neutral-200 mr-2 flex items-center">
           <StarIcon class="text-gold w-8 h-8" />
@@ -201,23 +204,66 @@ const recoms = (responseItems.value as TransformedRecom)?.results || []
     </div>
   </section>
 
-  <section v-if="detail" class="bg-white z-10 relative h-48">
-    <div class="mx-auto max-w-7xl pl-64 py-8">
+  <section class="flex flex-col md:hidden pt-48">
+    <div class="flex-col flex-1 mb-8 px-8">
+      <p class="text-white font-medium">
+        {{ detail.year }}
+      </p>
+      <h1 class="text-neutral-200 font-semibold text-4xl">
+        {{ detail.title }}
+      </h1>
+      <h2 class="text-white font-medium">
+        {{ detail.genres }}
+      </h2>
+    </div>
+
+    <div class="w-full bg-black/[0.5] h-full">
+      <ul class="mx-auto max-w-7xl flex flex-wrap py-2 box-border">
+        <li class="text-4xl text-neutral-200 px-8 md:px-0 md:mr-2 flex items-center w-1/2 md:w-auto">
+          <StarIcon class="text-gold w-8 h-8" />
+          {{ detail.rating }}
+        </li>
+        <li class="flex flex-col justify-center px-8 md:pl-0 w-1/2 border-l border-white/[0.2] md:border-none md:w-auto">
+          <span class="text-xs text-white/[0.5] font-medium">USER SCORE</span>
+          <span class="text-xs text-white font-medium">{{ detail.voters }} VOTES</span>
+        </li>
+        <li class="flex flex-col justify-center px-8 border-l border-white/[0.2] w-1/2 md:w-auto">
+          <span class="text-xs text-white/[0.5] font-medium">STATUS</span>
+          <span class="text-xs text-white font-medium">{{ detail.status }}</span>
+        </li>
+        <li class="flex flex-col justify-center px-8 border-l border-white/[0.2] w-1/2 md:w-auto">
+          <span class="text-xs text-white/[0.5] font-medium">LANGUAGE</span>
+          <span class="text-xs text-white font-medium">{{ detail.lang }}</span>
+        </li>
+        <li v-if="detail.budget" class="flex flex-col justify-center px-8 border-l border-white/[0.2] w-1/2 md:w-auto">
+          <span class="text-xs text-white/[0.5] font-medium">BUDGET</span>
+          <span class="text-xs text-white font-medium">{{ detail.budget }}</span>
+        </li>
+        <li class="flex flex-col justify-center px-8 border-l border-white/[0.2] w-1/2 md:w-auto">
+          <span class="text-xs text-white/[0.5] font-medium">PRODUCTION</span>
+          <span class="text-xs text-white font-medium">{{ detail.prodCompany }}</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section v-if="detail" class="bg-white z-10 relative md:h-48">
+    <div class="mx-auto max-w-7xl px-4 md:pr-0 md:pl-64 py-8">
       <h2 class="text-primary font-semibold">
         OVERVIEW
       </h2>
-      <p class="text-black font-medium text-base/[200%] w-1/2">
+      <p class="text-black font-medium text-base/[200%] w-full md:w-1/2">
         {{ detail.overview }}
       </p>
     </div>
   </section>
 
   <section v-if="detail" class="bg-white z-10 relative">
-    <div class="mx-auto max-w-7xl py-8">
+    <div class="mx-auto max-w-7xl py-8 px-4 md:px-0">
       <h2 class="text-primary font-semibold">
         REVIEWS
       </h2>
-      <div class="grid grid-cols-2 gap-8 mt-6">
+      <div class="grid md:grid-cols-2 gap-8 mt-6">
         <Review
           v-for="review in reviews.slice(0, 2)"
           :key="review.id"
@@ -233,7 +279,7 @@ const recoms = (responseItems.value as TransformedRecom)?.results || []
 
   <section>
     <div class="mx-auto max-w-7xl py-8">
-      <h2 class="text-white font-semibold">
+      <h2 class="text-white font-semibold px-8 md:px-0">
         RECOMENDATION {{ featureName }}
       </h2>
       <MovieList class="mt-9 mb-32" :items="recoms.slice(0, 5)" />

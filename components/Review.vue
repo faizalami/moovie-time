@@ -19,7 +19,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="rounded bg-[#F9F9F9] h-72 max-h-72 px-6 py-5">
+  <div class="rounded bg-[#F9F9F9] h-72 max-h-72 px-6 py-5 drop-shadow-md">
     <div class="flex justify-between">
       <div class="flex">
         <img class="w-12 h-12 object-cover rounded-full mr-5" :src="userPhoto" :alt="userName">
