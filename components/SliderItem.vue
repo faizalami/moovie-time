@@ -24,6 +24,8 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const imgSrc = ref(props.image ? `https://image.tmdb.org/t/p/w500${props.image}` : '/img/image-not-found.png')
+
+defineEmits(['click'])
 </script>
 
 <template>
@@ -32,6 +34,7 @@ const imgSrc = ref(props.image ? `https://image.tmdb.org/t/p/w500${props.image}`
       'py-5 pl-5': true,
       'opacity-50 hidden md:block': !active
     }"
+    @click="$emit('click')"
   >
     <div class="flex h-[324px] bg-black">
       <img class="-m-5" :src="imgSrc" :alt="title">

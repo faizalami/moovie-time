@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from '@heroicons/vue/20/solid'
 import type { Movies } from '~~/types/movies.type.js'
 import type { Genres } from '~~/types/genres.type.js'
 import type { Props as MovieItem } from '~~/components/SliderItem.vue'
@@ -53,7 +54,7 @@ const { data: responseSlider } = await useFetch(
   },
 )
 
-const sliderItems = (responseSlider.value as TransformedMovies)?.results.slice(0, 3) || []
+const sliderItems = (responseSlider.value as TransformedMovies)?.results.slice(0, 6) || []
 
 const { data: responseMovies } = await useFetch(
   'https://api.themoviedb.org/3/movie/popular?api_key=f0ed16cec6f5c089dab07bd0c89aa2f5&language=en-US&page=1',
@@ -64,13 +65,27 @@ const { data: responseMovies } = await useFetch(
 
 const movies = (responseMovies.value as TransformedMovies)?.results || []
 
+const sliderIndex = ref(1)
+const displaySlider = computed(() => {
+  if (sliderIndex.value === 0) {
+    return [...sliderItems.slice(-1), ...sliderItems.slice(0, 2)]
+  } else if (sliderIndex.value === sliderItems.length - 1) {
+    return [...sliderItems.slice(-2), ...sliderItems.slice(0, 1)]
+  } else {
+    return sliderItems.slice(sliderIndex.value - 1, sliderIndex.value + 2)
+  }
+})
+
+function handleSliderClick (itemId?: number) {
+  sliderIndex.value = sliderItems.findIndex(item => item.movieId === itemId)
+}
 </script>
 
 <template>
   <section class="pt-64 md:pt-32 pb-12 text-white w-full overflow-hidden">
     <div class="md:-mx-16 relative md:-left-16 grid md:grid-cols-3 gap-8">
       <SliderItem
-        v-for="(item, index) in sliderItems"
+        v-for="(item, index) in displaySlider"
         :key="item.movieId"
         :active="index === 1"
         :movie-id="item.movieId"
@@ -80,18 +95,21 @@ const movies = (responseMovies.value as TransformedMovies)?.results || []
         :rating="item.rating"
         :image="item.image"
         :overview="item.overview"
+        @click="() => handleSliderClick(item.movieId)"
       />
     </div>
-    <div class="w-full flex justify-center mt-12">
+    <div class="w-full flex justify-center items-center mt-12">
+      <ArrowLeftCircleIcon class="text-decoration w-12 h-12 block md:hidden" @click="() => handleSliderClick(displaySlider[0]?.movieId)" />
       <div
-        v-for="(item, index) in sliderItems"
-        :key="item.movieId"
+        v-for="index in sliderItems.keys()"
+        :key="index"
         :class="{
           'rounded-full h-4 mx-2': true,
-          'w-16 bg-decoration': index === 1,
-          'w-4 bg-white/[0.5]': index !== 1,
+          'w-16 bg-decoration': index === sliderIndex,
+          'w-4 bg-white/[0.5]': index !== sliderIndex,
         }"
       />
+      <ArrowRightCircleIcon class="text-decoration w-12 h-12 block md:hidden" @click="() => handleSliderClick(displaySlider[2]?.movieId)" />
     </div>
   </section>
 
