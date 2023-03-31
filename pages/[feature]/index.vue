@@ -103,8 +103,8 @@ const selectedSort = ref(sort[0])
 </script>
 
 <template>
-  <section class="bg-white/[0.05] h-[390px] text-neutral-200 pt-32 box-border">
-    <div class="mx-auto max-w-7xl">
+  <section class="bg-white/[0.05] h-[390px] text-neutral-200 pt-64 md:pt-32 box-border">
+    <div class="mx-auto max-w-7xl px-4 md:px-0">
       <div class="w-28 border-t-4 pt-1 border-decoration">
         <h1 class="w-52 text-2xl font-semibold">
           {{ pageName }}
@@ -115,7 +115,7 @@ const selectedSort = ref(sort[0])
 
   <section>
     <div class="mx-auto max-w-7xl flex items-start flex-wrap">
-      <aside class="w-60 mr-[30px] -mt-44 mb-32 rounded bg-gradient-to-b from-[#0E1723] to-secondary">
+      <aside class="mx-4 md:mx-0 w-full md:w-60 md:mr-[30px] -mt-44 mb-8 md:mb-32 rounded bg-gradient-to-b from-[#0E1723] to-secondary">
         <div class="p-5 text-neutral-200 font-semibold border-b border-white/[0.07]">
           Sort Results By
         </div>
@@ -170,7 +170,7 @@ const selectedSort = ref(sort[0])
             <li
               v-for="genreItem in genres"
               :key="genreItem.id"
-              class="flex justify-between"
+              class="flex justify-between mb-4"
             >
               <span>
                 {{ genreItem.name }}
@@ -181,8 +181,10 @@ const selectedSort = ref(sort[0])
           </ul>
         </div>
       </aside>
-      <MovieList class="-mt-44 mb-16 flex-1" :items="items" :columns="4" />
-      <div class="basis-full ml-64 mb-16 text-center">
+
+      <MovieList class="md:-mt-44 mb-16 flex-1" :items="items" :columns="4" />
+
+      <div class="basis-full md:ml-64 mb-16 text-center">
         <button class="bg-primary text-neutral-200 rounded-full py-1.5 px-4">
           Load More
         </button>
