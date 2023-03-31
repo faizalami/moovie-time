@@ -233,7 +233,7 @@ const filteredPeople = computed(() =>
       </Combobox>
 
       <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3 text-neutral-200 flex items-center">
-        <Menu as="div" class="relative inline-block text-left">
+        <Menu as="div" class="relative inline-block text-left mt-1">
           <div>
             <MenuButton
               class="rounded-md px-3 py-2 font-medium flex items-center"
