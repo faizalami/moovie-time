@@ -53,7 +53,7 @@ const movies = (responseMovies.value as TransformedMovies)?.results || []
 </script>
 
 <template>
-  <section class="mt-32 h-[530px] text-white w-full overflow-hidden">
+  <section class="pt-32 pb-12 text-white w-full overflow-hidden">
     <div class="-mx-16 relative -left-16 grid grid-cols-3 gap-8">
       <SliderItem
         v-for="(item, index) in sliderItems"
