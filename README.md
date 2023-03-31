@@ -1,6 +1,11 @@
-# Nuxt 3 Minimal Starter
+# MoovieTime
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A movies & tv shows showcase app. The API optained from [The Movie Database](https://developers.themoviedb.org/3/getting-started/introduction).
+
+
+## Result
+
+TODO
 
 ## Setup
 
